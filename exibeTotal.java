@@ -1,4 +1,4 @@
-package br.com.projetodroidpizza.activity;
+package br.com.pizzariasantos.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

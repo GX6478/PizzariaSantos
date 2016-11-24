@@ -1,4 +1,4 @@
-package br.com.projetodroidpizza.activity;
+package br.com.pizzariasantos.activity;
 
 import android.content.Intent;
 import android.speech.RecognizerIntent;
@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         btnSair.setOnClickListener(this);
-
     }
 
     public void onClick(View view){
@@ -104,10 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (resposta.equalsIgnoreCase("Presunto") || resposta.equalsIgnoreCase("Pizza Presunto") ||
                             resposta.equalsIgnoreCase("Pizza de Presunto")) {
 
+                        valorPedido += 28;
                         achou = true;
                         objTextParaVoz.speak("Entendi, Pizza de Presunto. Escolha sua bebida.",
                                 TextToSpeech.QUEUE_FLUSH, null, String.valueOf(SOLICITACAO_DA_BEBIDA));
-                        valorPedido += 28;
                     }
 
                     if (resposta.equalsIgnoreCase("Portuguesa") || resposta.equalsIgnoreCase("Pizza Portuguesa") ||
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         achou = true;
                         valorPedido += 7;
-                        objTextParaVoz.speak("Entendi, Coca-Cola. O valor do seu pedido é " + String.valueOf(valorPedido) + " reais. Confirma o seu pedido?",
+                        objTextParaVoz.speak("Entendi, Coca-Cola. O valor do seu pedido é " + String.valueOf(valorPedido.intValue()) + " reais. Confirma o seu pedido?",
                                 TextToSpeech.QUEUE_FLUSH, null, String.valueOf(CONFIRMA_PEDIDO));
                     }
 
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         achou = true;
                         valorPedido += 5;
-                        objTextParaVoz.speak("Entendi, Guaraná. O valor do seu pedido é " + String.valueOf(valorPedido) + " reais. Confirma o seu pedido?",
+                        objTextParaVoz.speak("Entendi, Guaraná. O valor do seu pedido é " + String.valueOf(valorPedido.intValue()) + " reais. Confirma o seu pedido?",
                                 TextToSpeech.QUEUE_FLUSH, null, String.valueOf(CONFIRMA_PEDIDO));
                     }
 
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         achou = true;
                         valorPedido += 5;
-                        objTextParaVoz.speak("Entendi, Fanta Uva. O valor do seu pedido é " + String.valueOf(valorPedido) + " reais. Confirma o seu pedido?",
+                        objTextParaVoz.speak("Entendi, Fanta Uva. O valor do seu pedido é " + String.valueOf(valorPedido.intValue()) + " reais. Confirma o seu pedido?",
                                 TextToSpeech.QUEUE_FLUSH, null, String.valueOf(CONFIRMA_PEDIDO));
                     }
 
@@ -167,9 +166,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 TextToSpeech.QUEUE_FLUSH, null, null);
 
                         Intent it = new Intent(this, exibeTotal.class);
-                        it.putExtra("VALORTOTAL", "R$ " + String.valueOf(valorPedido));
+                        it.putExtra("VALORTOTAL", "R$ " + String.valueOf(valorPedido.intValue()) + ",00");
                         startActivity(it);
-
                     }
 
                     if (resposta.equalsIgnoreCase("Não") || resposta.equalsIgnoreCase("Not") || resposta.equalsIgnoreCase("Sair")) {
@@ -182,7 +180,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     valorPedido = 0.0;
                 }
 
-                valorPedido = 0.0;
                 if (!achou) {
                     Toast.makeText(this, "Não entendi.", Toast.LENGTH_LONG).show();
                 }
